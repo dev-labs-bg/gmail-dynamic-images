@@ -5,7 +5,7 @@
 
 ## How it works
 1. The extension is executed only if the opened tab URL is https://mail.google.com/*
-2. There is an observer object `MutationObserver`, that checks for DOM manipulations and if there are then the extension updates all cached images.
+2. There is an observer object `MutationObserver`, that checks for DOM manipulations and if there are any - then the extension updates all cached images.
 * With the Observer implementation we catch most of the possible corner cases. 
 
 ## Notes
