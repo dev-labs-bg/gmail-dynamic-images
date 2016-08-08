@@ -29,6 +29,12 @@ chrome.extension.sendMessage({}, function(response) {
 			$.each($('img'), function(key, value) {
 				// Cached image src
 				var googleSrc = $(value).attr('src');
+
+				// Make sure the image has src
+				if ( ! googleSrc) {
+					return;
+				}
+
 				// Index of the real image src, if exists
 				var realURLIndex = googleSrc.indexOf('#http');
 				// Filter image by a domain
