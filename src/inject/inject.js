@@ -1,28 +1,19 @@
-chrome.extension.sendMessage({}, function(response) {
-	var readyStateCheckInterval = setInterval(function() {
-		if (document.readyState === "complete") {
-			clearInterval(readyStateCheckInterval);
+/**
+ * Attach event handlers,
+ * when the images to be updated
+ */
+/**
+ * tr.zA - Emails list items
+ * [role="listitem"] - Email replies
+ */
+$('body').on('click', 'tr.zA, [role="listitem"]', updateImages);
+$(document).ready(updateImages);
 
-			// select the target node
-			var target = $("body").get(0);
-			 
-			// create an observer instance
-			var observer = new MutationObserver(function(mutations) {
-				mutations.forEach(function(mutation) {
-					updateImages();
-			  	});    
-			});
-			 
-			// configuration of the observer:
-			var config = { attributes: true, childList: true  };
-			 
-			// pass in the target node, as well as the observer options
-			observer.observe(target, config);
-
-		}
-	}, 10);
-});
-
+/**
+ * Get extension options
+ *
+ * @param {Function} successCallback
+ */
 function getOptions(successCallback) {
 	chrome.storage.sync.get({
 		domains: []
@@ -37,9 +28,20 @@ function getOptions(successCallback) {
  */
 function updateImages() {
 
+	/**
+	 * First get extension options,
+	 * and then update the images
+	 */
 	getOptions(update);
 
 	function update(domains) {
+		// Don't update images, if there aren't added domains
+		if ( ! domains || domains.length === 0) {
+			return;
+		}
+
+		console.log('Update images ...');
+
 		$.each($('img'), function(key, value) {
 			// Cached image src
 			var googleSrc = $(value).attr('src');
@@ -58,8 +60,8 @@ function updateImages() {
 
 				// If the image is cached for the selected domain
 				if (realURLIndex !== -1 && realURLDomainIndex !== -1) {
-					var timestamp = new Date().getTime() / 1000;
-					var realURL =  googleSrc.substr(realURLIndex + 1) + '?timestamp=' + timestamp;
+					var time = new Date().getTime();
+					var realURL =  googleSrc.substr(realURLIndex + 1) + '?time=' + time;
 
 					// Use no cached image URL
 					$(value).attr("src", realURL);

@@ -1,5 +1,8 @@
-// Saves options to chrome.storage
+/**
+ * Saves options to chrome.storage
+ */
 function saveOptions() {
+    // Convert inputs to array
     var domains = $('.domain').map(function() {
         return $(this).val();
     }).get();
@@ -15,10 +18,12 @@ function saveOptions() {
     });
 }
 
-// Restores select box and checkbox state using the preferences
-// stored in chrome.storage.
+/**
+ * Update options page with
+ * already set domains.
+ * If there aren't, use a default value.
+ */
 function restoreOptions() {
-    // Use default value color = 'red' and likesColor = true.
     chrome.storage.sync.get({
         domains: []
     }, function(items) {
@@ -28,6 +33,12 @@ function restoreOptions() {
     });
 }
 
+/**
+ * Build domain html row
+ *
+ * @param {String} value - Domain name
+ * @returns {*|jQuery}
+ */
 function buildDomainHTML(value) {
     var $wrapper = $('<div />', {
         class: 'input-group domain-item-wrapper'
@@ -54,14 +65,17 @@ function buildDomainHTML(value) {
 $(document).ready(function(){
     restoreOptions();
 
+    // Add new blank domain input
     $('#add-more').on('click', function(){
         $('#domains-list').append(buildDomainHTML());
     });
 
+    // Remove domain option
     $('#domains-list').on('click', '.remove', function(){
        $(this).parents('.domain-item-wrapper').remove();
     });
 
+    // Save domain options
     $('#save').on('click', saveOptions);
 });
 
