@@ -1,0 +1,16 @@
+body {
+    padding: 15px;
+    overflow: hidden;
+}
+
+#save {
+    float: right;
+}
+#status {
+    float: left;
+    display: none;
+}
+
+#domains-list .domain-item-wrapper {
+    padding-bottom: 5px;
+}

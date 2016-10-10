@@ -10,7 +10,8 @@
   },
   "default_locale": "en",
   "permissions": [
-    "tabs"
+    "tabs",
+    "storage"
   ],
   "content_scripts": [
     {
@@ -22,5 +23,9 @@
         "src/inject/inject.js"
       ]
     }
-  ]
+  ],
+  "options_ui": {
+    "page": "src/options.html",
+    "chrome_style": true
+  }
 }

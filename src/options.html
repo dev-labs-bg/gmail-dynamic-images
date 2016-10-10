@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Gmail Images Updater Options</title>
+
+    <script src="../js/jquery/jquery.min.js"></script>
+    <script src="../js/bootstrap/bootstrap.min.js"></script>
+    <script src="options/options.js"></script>
+
+    <link rel="stylesheet" href="../css/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/bootstrap/css/bootstrap-theme.css.map">
+    <link rel="stylesheet" href="../css/app/options.css">
+
+</head>
+
+<body>
+    <div class="row">
+        <div class="col-lg-12">
+            <p class="text-info"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> Enter domain names, those we want to show the real images (instead of the cached).</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-primary">
+                <div class="panel-heading clearfix">Domain names <span id="add-more" class="btn btn-success pull-right">Add</span></div>
+                <div id="domains-list" class="panel-body"></div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="clearfix">
+        <div id="status" class="text-success"></div>
+        <span class="btn btn-primary" id="save">Save</span>
+    </footer>
+
+</body>
+</html>
