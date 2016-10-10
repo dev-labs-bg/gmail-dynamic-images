@@ -20,26 +20,41 @@ chrome.extension.sendMessage({}, function(response) {
 			observer.observe(target, config);
 
 		}
+	}, 10);
+});
 
-		/**
-		 * Update all cached images,
-		 * with the real ones
-		 */
-		function updateImages() {
-			$.each($('img'), function(key, value) {
-				// Cached image src
-				var googleSrc = $(value).attr('src');
+function getOptions(successCallback) {
+	chrome.storage.sync.get({
+		domains: []
+	}, function(items) {
+		successCallback(items.domains);
+	});
+}
 
-				// Make sure the image has src
-				if ( ! googleSrc) {
-					return;
-				}
+/**
+ * Update all cached images,
+ * with the real ones
+ */
+function updateImages() {
 
-				// Index of the real image src, if exists
-				var realURLIndex = googleSrc.indexOf('#http');
-				// Filter image by a domain
-				// TODO - Make Option page, for domain filtering
-				var realURLDomainIndex = googleSrc.indexOf('updates.devlabs.bg');
+	getOptions(update);
+
+	function update(domains) {
+		$.each($('img'), function(key, value) {
+			// Cached image src
+			var googleSrc = $(value).attr('src');
+
+			// Make sure the image has src
+			if ( ! googleSrc) {
+				return;
+			}
+
+			// Index of the real image src, if exists
+			var realURLIndex = googleSrc.indexOf('#http');
+
+			// Filter image by a domain
+			domains.forEach(function(domain) {
+				var realURLDomainIndex = googleSrc.indexOf(domain);
 
 				// If the image is cached for the selected domain
 				if (realURLIndex !== -1 && realURLDomainIndex !== -1) {
@@ -50,6 +65,7 @@ chrome.extension.sendMessage({}, function(response) {
 					$(value).attr("src", realURL);
 				}
 			});
-		}
-	}, 10);
-});
+
+		});
+	}
+}
