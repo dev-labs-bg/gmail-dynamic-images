@@ -1,4 +1,4 @@
-# gmail-images-updater
+# Gmail Dynamic Images
 Gmail caches all external urls. That makes it impossible to read the most recent data of the dynamic images (i.e. votes and other server generated images).
 
 ## How it works:
