@@ -7,5 +7,6 @@ Gmail caches all external urls. That makes it impossible to read the most recent
 2. In the extension's Option page - you can list all domain names, those you want to enable dynamic images (stop caching).
 
 ## Installation
-1. Load the [extension as unpacked](https://developer.chrome.com/extensions/getstarted#unpacked), because it's not published to the Chrome Extensions store.
+1. Add it directly via [Chrome Web Store](https://chrome.google.com/webstore/detail/gmail-dynamic-images/liagkeaohklpkejapcepbakplhlanade).
+2. Or load the [extension as unpacked](https://developer.chrome.com/extensions/getstarted#unpacked).
 
