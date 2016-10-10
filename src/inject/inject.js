@@ -40,8 +40,6 @@ function updateImages() {
 			return;
 		}
 
-		console.log('Update images ...');
-
 		$.each($('img'), function(key, value) {
 			// Cached image src
 			var googleSrc = $(value).attr('src');
