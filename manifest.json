@@ -1,6 +1,6 @@
 {
   "name": "Gmail Dynamic Images",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "manifest_version": 2,
   "description": "Update Gmail cached images with the real ones",
   "icons": {
